@@ -1,4 +1,2 @@
-minghongjun.github.io
-=====================
+Nothing here now
 
-my weblog
