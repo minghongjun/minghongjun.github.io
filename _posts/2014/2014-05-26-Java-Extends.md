@@ -6,11 +6,6 @@ tags: extends
 ---
 ## Java Extends
 
-<http://baidu.com>  
-[baidu](http://baidu.com)  
-![baidu](/media/img/head_bg.jpg)  
-
-
 >理解继承是理解面向对象程序设计的关键.在Java中,通过关键字extends继承一个已有的类,被继承的类称为父类(超类，基类),新的类称为子类(派生类).在Java中不允许多继承.code:
 
 {% highlight java %}
