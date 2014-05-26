@@ -79,6 +79,7 @@ write方法与InputStream的read方法相对应，它有三个形态：
 其他的Stream类型都是继承这两个，扩展了一些功能，使用方法大同小异。
 
 {% highlight java %}
+
 import java.io.*;
 
 public class Main {
@@ -86,10 +87,10 @@ public class Main {
 
 public static void main(String[] args) throws IOException {
 
-ReadFIle("d:\\test.txt");
+	ReadFIle("d:\\test.txt");
 
-//下面的方法段演示了OutputStream的作用，功能是复制上面的文件内容至一个新文件
-CopyFile("d:\\test.txt", "d:\\test2.txt");
+	//下面的方法段演示了OutputStream的作用，功能是复制上面的文件内容至一个新文件
+	CopyFile("d:\\test.txt", "d:\\test2.txt");
 
 }
 
@@ -152,5 +153,6 @@ public static void CopyFile(String srcFilePath,String dstFilePath) throws IOExce
 	}
 
 }
+
 {% endhighlight %}
  

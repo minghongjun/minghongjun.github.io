@@ -65,6 +65,7 @@ public class Judge {
         }
     }
 }
+
 {% endhighlight %}
 
 ## Regist.java
@@ -133,6 +134,7 @@ public class Regist extends ActionSupport {
         return "success";
     }
 }
+
 {% endhighlight %}
 
 注意这里红色的部分，要区别java.sql.date 和 java.util.date
@@ -140,37 +142,39 @@ public class Regist extends ActionSupport {
 ## regist.jsp
 
 {% highlight html %}
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="/struts-dojo-tags" prefix="sd"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-<head>
-<title>Regist</title>
-<s:head />
-<sd:head />
-</head>
-<body>
-<s:form action="regist" id="regist">
-    <s:textfield name="username" label="用户名" id="name" onblur="test()" />
-    <s:password name="password" label="密码" id="pwd" onblur="test()" />
-    <sd:datetimepicker name="birthday" label="生日"
-        displayFormat="yyyy-MM-dd" />
-    <s:submit value="提交" onclick="return test()"  />
-</s:form>
 
-<SCRIPT type="text/javascript">
-function test(){
-    var lname=document.getElementByIdx("name").value.length;
-    if(lname<4 || lname>32){alert("用户名长度在4-32之间");
-    return false;}
-    var lpwd=document.getElementByIdx("pwd").value.length;
-    if(lpwd<6){alert("密码长度必需大于6");return false;}
-}
-function testpassword(){  
-}
-</SCRIPT>
-</html>
+    <%@ page contentType="text/html; charset=UTF-8"%>
+    <%@ taglib uri="/struts-dojo-tags" prefix="sd"%>
+    <%@ taglib uri="/struts-tags" prefix="s"%>
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+    <html>
+    <head>
+    <title>Regist</title>
+    <s:head />
+    <sd:head />
+    </head>
+    <body>
+    <s:form action="regist" id="regist">
+        <s:textfield name="username" label="用户名" id="name" onblur="test()" />
+        <s:password name="password" label="密码" id="pwd" onblur="test()" />
+        <sd:datetimepicker name="birthday" label="生日"
+            displayFormat="yyyy-MM-dd" />
+        <s:submit value="提交" onclick="return test()"  />
+    </s:form>
+
+    <SCRIPT type="text/javascript">
+    function test(){
+        var lname=document.getElementByIdx("name").value.length;
+        if(lname<4 || lname>32){alert("用户名长度在4-32之间");
+        return false;}
+        var lpwd=document.getElementByIdx("pwd").value.length;
+        if(lpwd<6){alert("密码长度必需大于6");return false;}
+    }
+    function testpassword(){  
+    }
+    </SCRIPT>
+    </html>
+
 {% endhighlight %}
 
 ## Judge.java:
@@ -231,6 +235,7 @@ public class Judge {
         }
     }
 }
+
 {% endhighlight %}
 
 ## Regist.java
@@ -299,6 +304,7 @@ public class Regist extends ActionSupport {
         return "success";
     }
 }
+
 {% endhighlight %}
 
 注意这里红色的部分，要区别java.sql.date 和 java.util.date
@@ -362,4 +368,5 @@ function testpassword(){
 </s:form>
 </body>
 </html>
+
 {% endhighlight %}
