@@ -6,43 +6,48 @@ tags: extends
 ---
 ## Java Extends
 
+<http://baidu.com>  
+[baidu](http://baidu.com)  
+![baidu](/media/img/head_bg.png)  
+
+
 >理解继承是理解面向对象程序设计的关键.在Java中,通过关键字extends继承一个已有的类,被继承的类称为父类(超类，基类),新的类称为子类(派生类).在Java中不允许多继承.code:
 
 {% highlight java %}
 
-	class Animal
+class Animal
+{
+	int height,weight;
+	void eat()
 	{
-	 int height,weight;
-	 void eat()
-	 {
-	  System.out.println("Animal eat!");
-	 }
-	 void sleep()
-	 {
-	  System.out.println("Animal sleep!");
-	 }
-	 void breathe()
-	 {
-	  System.out.println("Animal breathe!");
-	 }
-	}
-	class Fish extends Animal
+	System.out.println("Animal eat!");
+}
+void sleep()
+{
+	System.out.println("Animal sleep!");
+}
+void breathe()
+{
+	System.out.println("Animal breathe!");
+}
+}
+class Fish extends Animal
+{
+	
+}
+class DoMain
+{
+	public static void main(String[] args)
 	{
-	 
-	}
-	class DoMain
-	{
-	 public static void main(String[] args)
-	 {
-	  Animal an=new Animal();
-	  Fish fn=new Fish();
-	  
-	  an.breathe();
-	  fn.breathe();
-	  fn.height=30;
-	  fn.weight=20;
-	 }
-	}
+	Animal an=new Animal();
+	Fish fn=new Fish();
+	
+	an.breathe();
+	fn.breathe();
+	fn.height=30;
+	fn.weight=20;
+}
+}
 
 {% endhighlight %}
 
@@ -64,41 +69,41 @@ code:
 {% highlight java %}
 class Animal
 {
- int height,weight;
- void eat()
- {
-  System.out.println("Animal eat!");
- }
- void sleep()
- {
-  System.out.println("Animal sleep!");
- }
- void breathe()
- {
-  System.out.println("Animal breathe!");
- }
+	int height,weight;
+	void eat()
+	{
+	System.out.println("Animal eat!");
+}
+void sleep()
+{
+	System.out.println("Animal sleep!");
+}
+void breathe()
+{
+	System.out.println("Animal breathe!");
+}
 }
 class Fish extends Animal
 {
- int weight,height;   //隐藏了父类的weight,height;
- void breathe()  //override method breathe()
- {
-  super.breathe();  //用super调用父类的构造方法
-  System.out.println("Fish bubble");
- }
+	int weight,height;   //隐藏了父类的weight,height;
+	void breathe()  //override method breathe()
+	{
+	super.breathe();  //用super调用父类的构造方法
+	System.out.println("Fish bubble");
+}
 }
 class DoMain
 {
- public static void main(String[] args)
- {
- // Animal an=new Animal();
-  Fish fn=new Fish();
-  
-  an.breathe();
-  fn.breathe();
-  fn.height=30;
-  fn.weight=20;
- }
+	public static void main(String[] args)
+	{
+	// Animal an=new Animal();
+	Fish fn=new Fish();
+	
+	an.breathe();
+	fn.breathe();
+	fn.height=30;
+	fn.weight=20;
+}
 }
 {% endhighlight %}
 
@@ -120,48 +125,48 @@ code:
 {% highlight java %}
 class Animal
 {
- int height,weight;
- Animal()
- {
-  System.out.println("Animal construct");
- }
- void eat()
- {
-  System.out.println("Animal eat!");
- }
- void sleep()
- {
-  System.out.println("Animal sleep!");
- }
- void breathe()
- {
-  System.out.println("Animal breathe!");
- }
+	int height,weight;
+	Animal()
+	{
+	System.out.println("Animal construct");
+}
+void eat()
+{
+	System.out.println("Animal eat!");
+}
+void sleep()
+{
+	System.out.println("Animal sleep!");
+}
+void breathe()
+{
+	System.out.println("Animal breathe!");
+}
 }
 
 class Fish extends Animal
 {
- Fish()
- {
-  System.out.println("Fish construct");
- }
- void breathe()  //override method breathe()
- {
-  System.out.println("Fish bubble");
- }
+	Fish()
+	{
+	System.out.println("Fish construct");
+}
+void breathe()  //override method breathe()
+{
+	System.out.println("Fish bubble");
+}
 }
 class DoMain
 {
- public static void main(String[] args)
- {
-  //Animal an=new Animal();
-  Fish fn=new Fish();
-  
-  //an.breathe();
-  //fn.breathe();
-  //fn.height=30;
-  //fn.weight=20;
- }
+	public static void main(String[] args)
+	{
+	//Animal an=new Animal();
+	Fish fn=new Fish();
+	
+	//an.breathe();
+	//fn.breathe();
+	//fn.height=30;
+	//fn.weight=20;
+}
 }
 {% endhighlight %}
 
