@@ -292,7 +292,7 @@ public class Regist extends ActionSupport {
     public String execute() {
         Judge j = new Judge();
         if (j.IfExit(getUsername()))
-            return "input";
+            return "input";f
         else {
             j.InsetIntoTable(getUsername(), getPassword(), getBirthday());
         }
