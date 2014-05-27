@@ -1,6 +1,6 @@
 ---
 layout: post
-title: java this、super用法简谈
+title: java this super用法简谈
 categories: java
 tags: 
 	- this
