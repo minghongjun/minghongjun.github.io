@@ -9,9 +9,9 @@ tags: javascript
 
 在这一部分首先要为你展示的JavaScript特性是将你的滑鼠移到这个不同颜色的连结上面，此时看看浏览器下的状态列有何结果。然後这样的功能我们可以与JavaScript的功能相结合。好，现在再将你的滑鼠移到本处不同颜色的连结上面，你应该会发现有一个视窗出现，是吧？！如何！怎麽做到的呢？以下就是这一个连结的作法：
 
-    <a href="tpage.htm" onMouseOver="window.status='Just another stupid link...'; return true">
+    <a href="tpage.htm" onMouseOver="window.status='Just another stupid link...'; return true" />
 
-在这儿你只要在传统<a>的标签中加入onMouseOver的method，就可达成你要的效果了。这里的window.status是用来让你可以在WWW浏览器的状态列上显示一些讯息用的。在语法中，你可以看到讯息部分是用'括起来的部分，而非以"括起来，在讯息部分结束之後，必须加上;returntrue。好了，利用以上的特性可以很简单的完成第二个连结的例子！相当简单，以onMouseOver的method然後配合事件发生时去呼叫函数hello()就行了，不再多加解释了，作法如下：
+在这儿你只要在传统`<a>`的标签中加入onMouseOver的method，就可达成你要的效果了。这里的window.status是用来让你可以在WWW浏览器的状态列上显示一些讯息用的。在语法中，你可以看到讯息部分是用'括起来的部分，而非以"括起来，在讯息部分结束之後，必须加上;returntrue。好了，利用以上的特性可以很简单的完成第二个连结的例子！相当简单，以onMouseOver的method然後配合事件发生时去呼叫函数hello()就行了，不再多加解释了，作法如下：
 
 {% highlight html %}
 
