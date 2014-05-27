@@ -11,7 +11,7 @@ tags: javascript
 
     <a href="tpage.htm" onMouseOver="window.status='Just another stupid link...'; return true" />
 
-在这儿你只要在传统`<a>`的标签中加入onMouseOver的method，就可达成你要的效果了。这里的window.status是用来让你可以在WWW浏览器的状态列上显示一些讯息用的。在语法中，你可以看到讯息部分是用'括起来的部分，而非以"括起来，在讯息部分结束之後，必须加上;returntrue。好了，利用以上的特性可以很简单的完成第二个连结的例子！相当简单，以onMouseOver的method然後配合事件发生时去呼叫函数hello()就行了，不再多加解释了，作法如下：
+在这儿你只要在传统<a>的标签中加入onMouseOver的method，就可达成你要的效果了。这里的window.status是用来让你可以在WWW浏览器的状态列上显示一些讯息用的。在语法中，你可以看到讯息部分是用'括起来的部分，而非以"括起来，在讯息部分结束之後，必须加上;returntrue。好了，利用以上的特性可以很简单的完成第二个连结的例子！相当简单，以onMouseOver的method然後配合事件发生时去呼叫函数hello()就行了，不再多加解释了，作法如下：
 
 {% highlight html %}
 
