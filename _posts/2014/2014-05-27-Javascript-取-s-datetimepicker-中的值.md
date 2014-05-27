@@ -1,6 +1,6 @@
 ---
 layout: post
-title: javascript 取`<s:datetimepicker/>`中的值
+title: javascript 取<s:datetimepicker/>中的值
 categories: javascript
 tags: 
     - javascript
