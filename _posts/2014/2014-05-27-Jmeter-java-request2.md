@@ -191,3 +191,5 @@ Export 为 Runnable Jar File；
     set PERM=-XX:PermSize=256m -XX:MaxPermSize=512m
 
 3. JMeter需要以管理员身份打开，否则会出现：
+
+<img src="/media/img/jmeter-request-10.jpg" />
