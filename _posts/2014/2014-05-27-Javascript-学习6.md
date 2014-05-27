@@ -11,8 +11,13 @@ tags: javascript
 
 现在我先将上述特性展示给您瞧瞧。请按一下下面的按钮，看一看frames的长相。(如果您是线上观看此文件，您可能需稍候一下才看得到结果，因为scripts必需由server中载入到您的机器)。
 
-以下是此frame的写法:
+<form>
+<font size="+1">
+<input type="button" value="请 按 这 　" name="Button1">
+</font>
+</form>
 
+以下是此frame的写法:
 
 {% highlight html %} 
 <HTML>
@@ -41,11 +46,23 @@ tags: javascript
       </FRAMESET> 
     </FRAMESET> 
 
+<form>
+<font size="+1">
+<input type="button" value="试 试 这 个 按 钮" name="Button2">
+</font>
+</form>
+
 上面这个例子产生了两行，而且第二行又分割成三列大小相等的空间。在第一个<frameset>tag中的50%，50%两项叁数是用来表是frame的大小。
 
 您可以给每个frame一个"名字"(name)。frame的名字在JavaScript语法中的地位非常重要。在本章的第一个范例中您已学到如何替frame命名。接下来您可以用<frame>tag告诉浏览器您要载入哪一个HTML文件。
 
 我想您已了解frames的基本用法，接下来我们再看一个有趣的范例:
+
+<form>
+<font size="+1">
+<input type="button" value="快 试 试 这 里" name="Button3">
+</font>
+</form>
 
 上面的按钮将显示:按某个frame中的按钮後，会在另一frame中写入文字。
 

@@ -31,6 +31,10 @@ tags: javascript
 
 JavaScript 语法部份的结果如下，你可以试着按按钮看看有何结果产生！
 
+<form>
+<input type="button" value="Push me" name="Button1">
+</form>
+
 在范例 2 中，将会产生一个按钮，当你用滑鼠去按它的时候，会出现“好好学习，天天向上”的内容，以及一个弹出框：哈哈哈
 
 这个结果是如何产生的呢？首先，在 <head＞内的函数会被载入并存於内存中，接着一个新的 <form＞标签 <input type ="button".....＞将产生一个接钮。然後，你可以在後面看到 'onClick' 的指令，这就是告诉浏览器，当该按钮被按时，应会执行onClick 後的函数 'pushbutton()'，而这个函数在刚刚程式被载入时就已安放在记忆体中了！请注意，在这个函数中我们用到了个新东西－ alert 的 method，是 JavaScript 事先定义好的，它会以对话视窗产生内涵的讯息，并有一"确定"(OK)的按钮。

@@ -40,6 +40,10 @@ function RandomNumber() {
 
 JavaScript的一个重要特点是它可以制作视窗。你可以产生一个的视窗，并且在此视窗中载入HTML文件，完全以JavaScript来航游网际网路（Internet）。接下来的范例就是告诉你如何开启一个视窗并且写点东西进去，你可先试试按一下范中之接钮看看！
 
+<form>
+<input type="button" value="Push me" name="Button1">
+</form>
+
 原始程式如下：
 
 {% highlight html %}
