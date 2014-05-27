@@ -14,11 +14,10 @@ tags: javascript
 <html>
  <head>
     <script language="LiveScript">    
-function pushresult(){
-    document.write("好好学习，天天向上");
-    alert("哈哈哈");
-
-}
+        function pushresult(){
+            document.write("好好学习，天天向上");
+            alert("哈哈哈");
+        }
     </script>
  </head>
  <body>
@@ -63,6 +62,11 @@ Please enter your name:
 现在你可以试试结果如何： 
 
 请输入你的名字： 
+<form>
+<i>
+<input type="text" value="" name="name" gtbfieldid="2">
+</i>
+</form>
 
 在这个例子中又有新的东西了。首先，让我们注意一下，在语法中的注解部分`(<!- ... -＞) `此部分即我们之前所提到的它可以避免旧版本或是不支援 JavaScript的 WWW 浏览器因为不认识这些函数而产生错误。它的顺序应 该为 <script＞先，接着为注解的开头 <!-，然後是内容，注解尾 -＞， 最後是 </script＞。另外要注意的一点是，语解尾那一行的开头双斜线 "//" ，不可以省略，它代表了JavaScript 的注解，若省略了的话， -＞之前的字会被误认为是 JavaScript 的指令。
 
