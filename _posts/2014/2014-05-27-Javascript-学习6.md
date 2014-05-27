@@ -134,26 +134,26 @@ tags: javascript
 若您对物件观念已相当了解，相信它对您不是甚麽新鲜事。您可以看到frames.html同时呼叫frame1.html与frame2.html两个档案，所以frames.html称为frame1.html与frame2.html的parent(请恕我直接用英文)。同理，这两个新的frame就称为frames.html的child-frames。您可将这种复杂的关系想像成阶层式架构(hierarchy)。以下我借助一个小'图'来厘清这种关系:
 
  
-              frames.html                parent
-               /      \
-              /        \
-             /          \
-  fr1(frame1.html)     fr2(frame2.html)   children
+                frames.html                parent
+                 /      \
+                /        \
+               /          \
+    fr1(frame1.html)     fr2(frame2.html)   children
 
 
 
 当 然 您 可 依 此 类 推， 产 生 一 些 'grandchildren' frames。 (当 然， 这 并 不 是 正 式 的 名 称):
 
  
-              frames.html                parent
-               /      \
-              /        \
-             /          \
-  fr1(frame1.html)     fr2(frame2.html)   children
-          /  \
-         /    \
-        /      \
-    gchild1  gchild2                    'grandchildren'      
+                frames.html                parent
+                 /      \
+                /        \
+               /          \
+    fr1(frame1.html)     fr2(frame2.html)   children
+            /  \
+           /    \
+          /      \
+      gchild1  gchild2                    'grandchildren'      
 
 
 
