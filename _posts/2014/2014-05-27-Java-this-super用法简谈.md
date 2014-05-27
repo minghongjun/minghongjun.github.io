@@ -47,6 +47,7 @@ public class DemoThis {
 		DemoThis dt = new DemoThis("Kevin", 22);
 	}
 }
+
 {% endhighlight %}
 
 这段代码很简单，不用解释你也应该能看明白。在构造函数中你看到用this.print(),你完全可以用print()来代替它，两者效果一样。下面我们修改这个程序，来演示super的用法。
