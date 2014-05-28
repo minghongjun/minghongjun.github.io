@@ -275,4 +275,31 @@ WinDiff这个工具有些限制，无法开启包含空格符的目录或是脚�
 
     &执行完脚本后并未出现【Scan Action for Correlation】窗口
      要启用【Scan Action for Correlation】功能，请点选【Tools】>【General options】>【Correlation】tab，勾选【Show Scan for correlation popup after replay of Vuser】选项。
-    
+
+## 关联补充
+
+在脚本语言中，给定一个复杂的字符串，如果要取其中符合一定模式的字符或者字符串，就需要进行模式匹配，这个时候正则表达式就是最好的解决方案了。下面举个简单的例子说说。
+
+给定一个字符串org：
+
+“Value=/wEPDwUKLTY4MzkwMjI5MA9kFgJmD2QWAg==”, ENDITEM,
+
+假如我们要匹配Value=/后面的这个很大的值，那么用正则表达式改怎么写呢？
+
+下面给出一种Tcl语言的正则表达式写法(写法不止一种），
+
+set org “Value=/wEPDwUKLTY4MzkwMjI5MA9kFgJmD2QWAg==”
+
+if [regexp -all {Value=/(.*)==} $org match value] {
+    puts $value
+}
+
+这里用到了两个参考，前面的边界和后面的边界，前面的边界是：\”Value=/, 后面的边界是：==\” 利用这两个边界，左边界和右边界，我们就可以准确的定位和匹配这个需要的字符串。
+
+说了这么多，现在步入正题，LoadRunner中的关联。其实前面介绍了正则表达式，明白点的朋友可能已经知道我想说什么了–这就是我理解的LoadRunner中关联的内部实现，当然可能实际的实现比这个要复杂的多。
+
+那个字符串org就是我从一段脚本中摘录过来的，是一个web page的源代码中的一句话，LoadRunner通过web_reg_save_param函数在内部利用正则表达式把这个值匹配下来，然后存起来，以备后面使用。
+
+web_reg_save_param函数有两个很重要的参数，就是LB和RB，这就是我前面正则表达式里面用的左边界和右边界。这个值是在调用之前提前取出来的，所以`web_reg_save_param`这个方法一定要写在使用调用或者打开页面的前面。
+
+log中输出参数：`lr_log_message("lt=%s",lr_eval_string("{lt}"))`;

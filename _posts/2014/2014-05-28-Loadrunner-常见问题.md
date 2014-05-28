@@ -16,7 +16,7 @@ tags: problem
 
     录制脚本前，打开录制选项配置对话框Record-Options，进入到Advanced标签，先勾选“Support charset”，然后选择中支持UTF-8。再次录制，就不会出现中文乱码问题了。
 
-3.HTML-based script与URL-based script的脚本有什么区别？
+## 3.HTML-based script与URL-based script的脚本有什么区别？
 
     使用“HTML-based script”的模式录制脚本，VuGen为用户的每个HTML操作生成单独的步骤，这种脚本看上去比较直观；使用“URL-based script”模式录制脚本时，VuGen可以捕获所有作为用户操作结果而发送到服务器的HTTP请求，然后为用户的每个请求分别生成对应方法。
 
@@ -152,12 +152,9 @@ LoadRunner提供了char *ctime(const time_t *time)函数，调用参数为一个
 
 loadruner报错：Error -27728: Step download timeout (120 seconds) 如何解决
 
- 语法检查通过，但是在并发执行一个查询时候报错Action.c(16): Error -27728: Step download timeout (120 seconds) has expired when downloading non-resource(s)，请问有啥子解决方法，我使用web_set_timeout ，好象不起作用，直接在option中设置timeout时间为600，（单位应该是秒吧）还是没有起作用，结果都还是提示（120seconds），说明还是以120秒来判断的；使用lrs_set_recv_timeout，语法检查不过，说明库函数里面没有这个函数。
+错误分析：对于HTTP协议，默认的超时时间是120s（可以在LoadRunner中修改），如果超过这个时间，就会出现超时错误。
 
-尝试步骤：
-设置超时时间到600秒，回放还是出错。
-
-后来我设置了runt time setting中的internet protocol-preferences中的advaced区域有一个winlnet replay instead of sockets选项，选项后再回放就成功了。
+解决办法：对超时进行设置，默认的超时时间可以设置长一些（1、使用web_set_timeout 函数；2、“Runtime Setting”>“Internet Protocol:Preferences”>“Advanced”区域中点Options设置timeout时间长点；3、使用 lrs_set_recv_timeout函数），再设置多次迭代，如果还有超时现象，需要在“Runtime Setting”>“Internet Protocol:Preferences”>“Advanced”区域中勾选“winlnet replay instad of sockets”选项，再回放是否成功。
 
 kernzhang解释如下（这里谢谢kernzhang，欢迎访问他的论坛：http://www.kernzhang.com)：
 
@@ -178,3 +175,97 @@ VuGen专用的基于套接字的重播是一种可伸缩以便进行负载测试
 loadrunner录制脚本的时候要根据它的Generation Log的页面源代码来选择录制语言，如果选择utf-8后录制出来的结果，Generation Log的页面源代码为乱码的话，就不要选择utf-8，再录制一次,否则你的断言是无法通过的。
 
 如果选择utf-8后录制出来的结果，Generation Log的页面源代码不为乱码的话，就要选择utf-8. 
+
+## 24. Controller cannot create Vusers
+
+    1.Loadrunner agent 不启动。
+    解决：开始-Lr-tools-lr-agent run-time setting进行设置。
+    2.提示：Loadrunner Controller cannot create Vusers.
+    Ensure that your load generators are available and that your scrīpt are valid。
+    解决：打开：Virtual User Generator -tools - Create Controller Scenario 将 Load Generator 设置 为 localhost 就可以了。
+
+当然需要在脚本打开的时候设置
+
+—-其实本来Vuser G里就默认的是localhost了。出现此情况的原因可能是因为脚本是从别的机器拷过来的，不是本地创建的。如果直接在controller中加载，则会没法创建用户。
+
+解决办法：如上。然后由vuser 里直接tools下create controller 就是在vuser脚本制作这边加载controller.而不是直接打开controller，再加载脚本。
+
+## 25. 录制不到内容
+
+今天使用LR录制WEb的时候发现录制不到内容，录制的时候有event  录制结束后action里为空，没录制到内容
+
+试了好多种方法，还把LR重新安装都没有解决，最后在网上找一个方法：
+
+把recording options 里的 port mapping  从 socket level 改成了 winlnet level data 就好了
+
+不过不知道原因，反正就是好了，真是奇怪。
+
+## 26. Error-27498
+
+错误分析：这种错误常常是因为并发压力过大，服务器端太繁忙，无法及时响应客户端的请求而造成的，所以这个错误是正常现象，是压力过大造成的。
+
+如果压力很小就出现这种错误，可能是脚本出错，要仔细检查，提示错误信息会定位某个具体问题发生的位置。
+
+解决办法：例如上面的错误定位到某个URL上，需要再运行下场景，同时在其他机器上访问此URL。如果不能访问或时间过长，可能是服务器或者此应用不能支撑如此之大的负载。分析一下服务器，最好对其性能进行优化。
+
+如果再次运行还有超时现象，就要在各种图形中分析一下原因，例如可以查看是否服务器、DNS、网络等方面存在的问题。
+
+最后，增加一下运行时的超时设置，在“Run-Time Settings”>“Internet Protocol:Preferences”中，单击“options”，增加“HTTP-request connect timeout”或者“HTTP-request receive”的值。
+
+## 27. lr脚本中出现乱码
+
+错误现象：某个链接或者图片名称为中文乱码，脚本运行无法通过
+
+错误分析：脚本录制可能采用的是URL-based script方式，如果程序定义的字符集合采用的是国际标准，脚本就会出现乱码现象。
+
+解决办法：重新录制脚本，在录制脚本前，打开录制选项配置对话框进行设置，在“Recording Options”的“Advanced”选项里先将“Surport Charset”选中，然后先中支持“UTF-8”的选项。
+
+## 28. lr HTTP服务器状态代码：例如常见的页面-404错误提示、-500错误提示。
+
+错误现象 1：-404 Not Found服务器没有找到与请求URL相符的资源，但还可以继续运行直到结束。
+
+错误分析：此处与请求URL相符的资源在录制脚本时已经被提交过一次，回放时不可再重复提交同样的次源，而需要更改提交资源的内容，每次回放一次脚本都要改变提交的数据，保证模拟实际环境，造成一定的负载压力。
+
+解决办法：在出现错误的位置进行脚本关联，在必要时插入相应的函数。
+
+错误现象 2：-500 Internal Server Error 服务器内部错误，脚本运行停止。
+
+错误分析：服务器碰到了意外情况，使其无法继续回应请求。
+
+解决办法：出现此错误是到致命的，说明问题很严重，需要从问题的出现位置进行检查，此时需要此程序的开发人员配合来解决，而且产生的原因根据实际情况来定，测试人员无法单独解决问题，而且应该尽快解决，以便于后面的测试。
+
+## 29. lr请求无法找到 Error-27979
+
+错误现象：Error-27979
+
+这时在tree view中看不到此组件的相关URL。
+
+错误分析：所选择的录制脚本模式不正确，通常情况下，基于浏览的Web应用会使用“HTML-based script”模式来录制脚本；而没有基于浏览器的Web应用、Web应用中包含了与服务器进行交互的Java Applet、基于浏览器的应用中包含了向服务器进行通信的JavaScript/VB Script代码、基于流星器的应用中使用HTTPS安全协议，这时则使用“URL-based script”模式进行录制。
+
+解决办法：在“Recording Options”的“Internet Protocol”的“Recording”中选择“Recording Level”为“HTML-based script”，选择“Script Type”为“A script containing explicit”。然后再选择“URL-based script”模式来录制脚本。
+
+## lr不执行检查方法：例如添加了Web_find,但是回放过程中没有执行。
+
+错误分析：由于检查功能会消耗一定的资源，因此lr默认关闭了对文本以及图像的检查，所以在设置检查点后，需要开启检查功能。
+
+解决办法：在“Run-time Settings”的“Internet Protocol”选项里的“Perference”中勾选“Check”下的“Enable Image and text check”选项。
+
+## lr回放Web Services协议脚本错误
+
+错误现象：选用lr8.0版本来录制Web Services协议的脚本没有任何错误提示，回放脚本时会出现如下错误提示：Error:server returned an incorrectly formatted SOAP response.
+
+错误分析：lr8.0在录制Web Services协议的脚本时存在一个缺陷：如果服务器的操作系统是中文的，VuGen会自动将WSDL文件的头改为<?xml version = "1.0" encoding = "zh_cn"?>，所以才会有此错误提示。
+
+解决办法：下载两个补丁，分别为“LR80WebServicesFPI_setup.exe”和“Irunner_web_services_patch_1.exe”安装上即可。
+
+
+
+
+
+
+
+
+
+
+
+
