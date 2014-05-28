@@ -45,6 +45,8 @@ HTML模式录制的脚本如下图：
 
 <img src="/media/img/loadrunner-hits-5.jpg">
 
+tu 2
+
 <img src="/media/img/loadrunner-hits-6.jpg">
 
 观察上面录制的`http://www.baidu.com/`的脚本，URL模式的脚本中可以看到用户访问一次百度，实际上是从客户端给服务器端发送了5次请求。
