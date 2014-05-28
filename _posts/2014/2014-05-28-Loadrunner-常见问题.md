@@ -147,3 +147,28 @@ LoadRunner提供了char *ctime(const time_t *time)函数，调用参数为一个
 
     用VuGen打开虚拟用户脚本后，进入“Run-time Settings”对话框后，依次进入“Internet Protocol>Preference”，可以看到一些Web性能图配置。
     勾选上面得选项后，Controller将会在测试执行过程中生成数据，然后可在Analysis中查看相应的性能结果分析图.
+
+## 22. Error -27728: Step download timeout
+
+loadruner报错：Error -27728: Step download timeout (120 seconds) 如何解决
+
+ 语法检查通过，但是在并发执行一个查询时候报错Action.c(16): Error -27728: Step download timeout (120 seconds) has expired when downloading non-resource(s)，请问有啥子解决方法，我使用web_set_timeout ，好象不起作用，直接在option中设置timeout时间为600，（单位应该是秒吧）还是没有起作用，结果都还是提示（120seconds），说明还是以120秒来判断的；使用lrs_set_recv_timeout，语法检查不过，说明库函数里面没有这个函数。
+
+尝试步骤：
+设置超时时间到600秒，回放还是出错。
+
+后来我设置了runt time setting中的internet protocol-preferences中的advaced区域有一个winlnet replay instead of sockets选项，选项后再回放就成功了。
+
+kernzhang解释如下（这里谢谢kernzhang，欢迎访问他的论坛：http://www.kernzhang.com)：
+
+这个问题很有意思！呵呵!首先LR是通过Microsoft WinInet DLL去录制web协议的！但是在Control运行的时候它默认通过socket去模拟请求，因为这些可以真实的模拟带宽，而采用Microsoft WinInet DLL通过这个DLL去访问网卡方式去模拟带宽，使得模拟不是很精确！而且也不支持unix的应用，但是使用这个确实有时无法处理winnet Dll的一些请求，我认为是它的一些BUG，比如说：回放时它会检查Content-Length，但是网页支持receive more data时，这时socket模拟会一直等待直到timeout!
+
+先说了一些优缺点，最后回到这个问题！这个问题分两个方面分析：
+
+    第一：你要明白web_set_timeout()这个函数的适用范围！比如说一个web_submit_data（）中实际涵盖了10个对Server 端的请求，这个函数是针对10个请求的总和时间的！（别犯低级错误，timeout分了connect,receive以及download三个部分：） ）
+    第二：就是我解释的上面的一些BUG问题！
+
+WinInet dll在新版本中处理请求时可以异步的，就是不再是那种连接等待然后超时模式！但是LR用的socket是同步请求！只有等到timeout才会退 出！microsoft已经明确表示INTERNET_OPTION_RECEIVE_TIMEOUT 不再适用于 Microsoft Internet Explorer 5.0，显而易见，他们处理请求采取了异步处理的方式！呵呵！这下大概可以圆满解释你的问题了！呵呵
+
+这里，我补充如下：
+VuGen专用的基于套接字的重播是一种可伸缩以便进行负载测试的轻型引擎。使用线程时是准确的。基于套接字的引擎不支持socks代理服务器。如果在这样的环境中录制，应该使用winInet重播引擎。
