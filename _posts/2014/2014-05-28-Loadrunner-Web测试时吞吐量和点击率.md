@@ -45,7 +45,7 @@ HTML模式录制的脚本如下图：
 
 <img src="/media/img/loadrunner-hits-5.jpg">
 
-tu 2
+ URL模式录制的脚本如下图：
 
 <img src="/media/img/loadrunner-hits-6.jpg">
 
