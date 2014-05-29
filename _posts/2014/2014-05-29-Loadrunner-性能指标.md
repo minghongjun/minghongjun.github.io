@@ -1,6 +1,6 @@
 ---
 layout: post
-title: loadrunner 性能指标
+title: loadrunner 性能指标定位系统瓶颈
 categories: loadrunner
 tags: analysis
 ---
