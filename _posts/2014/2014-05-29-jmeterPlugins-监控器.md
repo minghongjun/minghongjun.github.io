@@ -17,7 +17,9 @@ average Latency is greater than 5000ms for 10 seconds ：连接10s平均等待�
 
 Error Rate is greater than 50% for 10 seconds ：10s内错误率一直高于50％就停止测试。
 
-## 3、jp@gc - Bytes Throughput Over Time:不同时间吞吐量展示（图表）（聚合报告里，Throughput是按请求个数来展示的，比如说1.9/sec，就是每s发送1.9个请求； 而这里的展示是按字节Bytes来展示的图表）
+## 3、jp@gc - Bytes Throughput Over Time:
+
+不同时间吞吐量展示（图表）（聚合报告里，Throughput是按请求个数来展示的，比如说1.9/sec，就是每s发送1.9个请求； 而这里的展示是按字节Bytes来展示的图表）
 
 ## 4、jp@gc - Composite Graph： 混合图表
 
@@ -32,9 +34,13 @@ Note that response time and latency values printed are averages.
 ## 6、jp@gc - Flexible File Writer：这个插件允许你灵活记录测试结果
 
 Filename：结果记录的地方
+
 Overwirte existing file：是否覆盖这个文件
+
 Ｗrite File Header：文件的头(即文件的第一行)
+
 Record each sample：如何记录不同的sample（记录哪些内容，用什么顺序，如何隔开不同的值）
+
 Write File Footer：文件的结尾（即文件的最后一行）
 
 <br>
