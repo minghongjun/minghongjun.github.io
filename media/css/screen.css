@@ -253,12 +253,18 @@ footer a:hover {
     text-decoration: none;
 }
 
+#tag_cloud {
+    padding-bottom: 10px;
+}
+
 #tag_cloud a {
     font-size: 1em;
-    color: Green;
-    margin: 3px;
-};
+    color: green;
+    margin: 5px 2px;
+    padding: 3px 1px;
+}
+
 #tag_cloud a:hover {
     font-size: 1.2em;
     color: #f09;
-};
+}
