@@ -29,9 +29,6 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
 ol, ul {
 	list-style: none;
 }
@@ -53,8 +50,9 @@ body{
     margin-left: auto;
     margin-right: auto;
     font-family: "Microsoft YaHei", Verdana, Tahoma, sans-serif;
-    color: #111;
+    color: #222;
     background-color: #ffffff;
+    line-height: 1.5em;
 }
 #head_bg {
     margin:0 auto;
@@ -147,6 +145,7 @@ hr {
 }
 a {
     color: #0053A6;
+    text-decoration: none;
 }
 a:visited {
     color: #0053A6;
@@ -157,7 +156,8 @@ a.ss-icon {
 	color: #ccc;
 }
 a:hover {
-    color: #FF0000;
+    color: #ff0000;
+    text-decoration: underline;
 }
 em {
     font-style: italic;
@@ -197,7 +197,7 @@ dl .meta {
 }
 
 .listing-item time{color:#999999;}
-.listing-seperator{font-weight:bold;}
+.listing-seperator{font-weight:bold; margin-top: 10px; color: green;}
 
 
 .paginator {
@@ -253,15 +253,20 @@ footer a:hover {
     text-decoration: none;
 }
 
+.clear {
+    clear: both;
+    height: 1px;
+}
+
 #tag_cloud {
-    padding-bottom: 10px;
     border-bottom: #edebea solid 2px;
+    padding-bottom: 10px;
 }
 
 #tag_cloud a {
-    color: green;
-    margin: 5px 2px;
+    margin: 6px 1px;
     padding: 3px 1px;
+    color: green;
     text-decoration: none;
 }
 
@@ -271,5 +276,5 @@ footer a:hover {
 }
 
 #tag_cloud span {
-    color:#333;
+    color: #333;
 }
