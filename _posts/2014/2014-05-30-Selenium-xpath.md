@@ -133,3 +133,28 @@ public class PageTest extends FunctionalTestCase {
 
 {% endhighlight %}
 
+## xpath定位同级
+
+如有下列页面源代码：
+
+{% highlight html %}
+
+<form id="aaa" name="bbb" onsubmit="return true;" action="/mmm/bbb.shtml" method="post">
+<input type="hidden" name="user.id" value="1000" />
+<input type="submit" id="userView_0" value="查看"/>
+<input type="submit" id="userView_userEdit" name="action:userEdit" value="修改"/>
+<input type="submit" id="userView_userDelete" name="action:userDelete" value="删除"/>
+</form>
+<form id="aaa" name="bbb" onsubmit="return true;" action="/mmm/bbb.shtml" method="post">
+<input type="hidden" name="user.id" value="1001" />
+<input type="submit" id="userView_0" value="查看"/>
+<input type="submit" id="userView_userEdit" name="action:userEdit" value="修改"/>
+<input type="submit" id="userView_userDelete" name="action:userDelete" value="删除"/>
+</form>
+
+{% endhighlight %}
+
+这里只有<input type="hidden" name="user.id" value="1000" />可以唯一定位页面的位置，但是我们要定位的地方是它的比如说查看、修改、删除的功能，可以用xpath来定位：
+
+xpath:"//input[@name='user.id' and @value=1000]/../input[@id='userView_0']"
+
