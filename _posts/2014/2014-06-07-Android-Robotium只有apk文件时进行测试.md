@@ -33,129 +33,129 @@ http://www.troido.de/re-sign.jar
 
 ## 然后：创建项目(使用米聊apk)
 
-1. 打开Eclipse，点击File->New一个Android Test Project  ApkTest, 然后点击下一步的时候选择This project(因为我们没有米聊应用的源码)，然后选择要在哪个android版本上测试
+1.打开Eclipse，点击File->New一个Android Test Project  ApkTest, 然后点击下一步的时候选择This project(因为我们没有米聊应用的源码)，然后选择要在哪个android版本上测试
 
-2. 在该项目下创建一个包，com.mitalk.test,在该包下创建LoginTest类，如下
+2.在该项目下创建一个包，com.mitalk.test,在该包下创建LoginTest类，如下
 
 {% highlight java %}
 
-package com.mitalk.test;
+  package com.mitalk.test;
 
-//需要导入的包
+  //需要导入的包
 
-import android.app.Activity;
+  import android.app.Activity;
 
-import android.test.ActivityInstrumentationTestCase2;
+  import android.test.ActivityInstrumentationTestCase2;
 
-import com.jayway.android.robotium.solo.Solo;
+  import com.jayway.android.robotium.solo.Solo;
 
-@SuppressWarnings("rawtypes")
+  @SuppressWarnings("rawtypes")
 
-public class LoginTest extends ActivityInstrumentationTestCase2 {
+  public class LoginTest extends ActivityInstrumentationTestCase2 {
 
-//定义变量
+  //定义变量
 
-public Solo solo;
+  public Solo solo;
 
-public Activity activity;
+  public Activity activity;
 
-private static Class<?> launchActivityClass;
+  private static Class<?> launchActivityClass;
 
-//对应re-sign.jar生成出来的信息框里的两个值
+  //对应re-sign.jar生成出来的信息框里的两个值
 
-private static String mainActiviy = "com.xiaomi.channel.ui.ChannelLauncherActivity";
+  private static String mainActiviy = "com.xiaomi.channel.ui.ChannelLauncherActivity";
 
-private static String packageName = "com.xiaomi.channel";
+  private static String packageName = "com.xiaomi.channel";
 
-static {
+  static {
 
-try {
+  try {
 
-launchActivityClass = Class
+  launchActivityClass = Class
 
-.forName(mainActiviy);
+  .forName(mainActiviy);
 
-} catch (ClassNotFoundException e) {
+  } catch (ClassNotFoundException e) {
 
-throw new RuntimeException(e);
+  throw new RuntimeException(e);
 
-}
+  }
 
-}
+  }
 
-@SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
 
-public LoginTest() {
+  public LoginTest() {
 
-super(packageName, launchActivityClass);
+  super(packageName, launchActivityClass);
 
-}
+  }
 
-@Override
+  @Override
 
-protected void setUp() throws Exception {
+  protected void setUp() throws Exception {
 
-super.setUp();
+  super.setUp();
 
-this.activity = this.getActivity();
+  this.activity = this.getActivity();
 
-this.solo = new Solo(getInstrumentation(), getActivity());
+  this.solo = new Solo(getInstrumentation(), getActivity());
 
-}
+  }
 
-public void testLoginWithIncorrentUsernameAndPassword() {
+  public void testLoginWithIncorrentUsernameAndPassword() {
 
-  //一定时间内等待text出现，否则就出错
-  solo.waitForText("Log In", 1, 10000);
+    //一定时间内等待text出现，否则就出错
+    solo.waitForText("Log In", 1, 10000);
 
-  //点击text “Log In”
-  solo.clickOnText("Log In");
+    //点击text “Log In”
+    solo.clickOnText("Log In");
 
-  //一定时间内等待text出现，否则就出错
-  solo.waitForText("OK", 1, 2000);
+    //一定时间内等待text出现，否则就出错
+    solo.waitForText("OK", 1, 2000);
 
-  //输入text
-  solo.enterText(0, "13559494170");
-  solo.enterText(1, "123456");
+    //输入text
+    solo.enterText(0, "13559494170");
+    solo.enterText(1, "123456");
 
-  //点击text “OK”
-  solo.clickOnText("OK");
+    //点击text “OK”
+    solo.clickOnText("OK");
 
-  //等待出现下面的text后，进行验证
-  solo.waitForText("Incorrect ID number or password.", 1, 10000);
-  assertTrue(solo.searchText("Incorrect ID number or password.",true));
+    //等待出现下面的text后，进行验证
+    solo.waitForText("Incorrect ID number or password.", 1, 10000);
+    assertTrue(solo.searchText("Incorrect ID number or password.",true));
 
-}
+  }
 
-@Override
+  @Override
 
-public void tearDown() throws Exception {
+  public void tearDown() throws Exception {
 
-try {
+  try {
 
-this.solo.finishOpenedActivities();
+  this.solo.finishOpenedActivities();
 
-} catch (Throwable e) {
+  } catch (Throwable e) {
 
-e.printStackTrace();
+  e.printStackTrace();
 
-}
+  }
 
-this.activity.finish();
+  this.activity.finish();
 
-super.tearDown();
+  super.tearDown();
 
-}
+  }
 
-}
+  }
 
 {% endhighlight %}
 
-3. 右键该项目，选择property然后选择java build path, 选择 Add External JARs,选择下到的robotium.jar
+3.右键该项目，选择property然后选择java build path, 选择 Add External JARs,选择下到的robotium.jar
 
-4. 在跑测试用例之前，还需要修改下AndroidManifest.xml文件的android:targetPackage为被测应用的根的包名
+4.在跑测试用例之前，还需要修改下AndroidManifest.xml文件的android:targetPackage为被测应用的根的包名
 
-  <instrumentation
+    <instrumentation
       android:name="android.test.InstrumentationTestRunner"
       android:targetPackage="com.xiaomi.channel" />
 
@@ -163,7 +163,7 @@ super.tearDown();
 
 ## Robotium 只有apk测试 通过id获取view
 
-  Activity a  = solo.getCurrentActivity();
-  int id = a.getResources().getIdentifier("bottom_menu_show_menu_button", "id", a.getPackageName());
-  final View v = a.findViewById(id);
-  solo.clickOnView(v);//即点击id为bottom_menu_show_menu_button的view
+    Activity a  = solo.getCurrentActivity();
+    int id = a.getResources().getIdentifier("bottom_menu_show_menu_button", "id", a.getPackageName());
+    final View v = a.findViewById(id);
+    solo.clickOnView(v);//即点击id为bottom_menu_show_menu_button的view
