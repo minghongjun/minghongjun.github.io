@@ -154,8 +154,16 @@ super.tearDown();
 3. 右键该项目，选择property然后选择java build path, 选择 Add External JARs,选择下到的robotium.jar
 
 4. 在跑测试用例之前，还需要修改下AndroidManifest.xml文件的android:targetPackage为被测应用的根的包名
+
   <instrumentation
-        android:name="android.test.InstrumentationTestRunner"
-        android:targetPackage="com.xiaomi.channel" />
+      android:name="android.test.InstrumentationTestRunner"
+      android:targetPackage="com.xiaomi.channel" />
 
 ## 最后： run as android junit test，就可以进行测试了
+
+## Robotium 只有apk测试 通过id获取view
+
+  Activity a  = solo.getCurrentActivity();
+  int id = a.getResources().getIdentifier("bottom_menu_show_menu_button", "id", a.getPackageName());
+  final View v = a.findViewById(id);
+  solo.clickOnView(v);//即点击id为bottom_menu_show_menu_button的view
