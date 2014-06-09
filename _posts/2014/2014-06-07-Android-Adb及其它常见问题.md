@@ -115,6 +115,48 @@ ant debug: Builds the application and signs it with a debug key.
 ant installd:install the tests and apk against the instrumented code
 ant run-tests: Runs tests from the package defined in test.package property
 
+## Robotium 之activity跳转之后的组件识别问题
+
+在利用Robotium做自动化测试的时候，碰到一个小问题。
+
+有些应用，会有一些类似于button或者之类的组件，点击可以进入到其他的界面，然后从其他界面选择一个值，将该值带回到前面的界面。
+
+这时，第一个界面之前的其他的组件就变化了。如果你在跳转到其他界面之前，初始化了一些组件，比如Button，EditText之类的，可能回到界面就不能在操作了。
+
+最好的方法是不要依赖于某个实例本身，比如说 clickOnView(button);button为Button的instance.可以用clickOnButton（String buttonName）替换。
+
+这个问题的root cause是因为，页面跳转涉及到activity的跳转。
+
+所以可以用一些动态的方法获得需要的组件，比如直接在方法中使用 clickOnView(solo.getCurrentButtons.get(i));之类的。
+
+## robotium一个类多个测试不能同时运行的问题
+
+robotium里面一个类里多个测试（@Smoke）一起运行时，第一个运行完了，第二个会卡住，不会往下运行，研究了几天发现问题如下：
+
+ 同一个类的不同Smoke，它们的的setUp是同一个，也就是说它们的入口的Activity是同一个，那这样的话，当第一个Smoke运行后，如果页面进入到其它的Activity里面，第二个Smoke运行时发现现在模拟器的Activity并不是第一个Activity，所以会报错，
+ 解决办法 ：
+
+ 在tearDown方法里面，让solo回到初始的入口（Activity）后，再执行teardown的操作
+
+ 如初始入口是Index：
+ 
+    @Override
+     protected void tearDown() {
+         solo.goBackToActivity("Index");
+         try {
+             solo.finalize();
+         } catch (Throwable e) {
+             e.printStackTrace();
+         }
+         getActivity().finish();
+         try {
+             super.tearDown();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+
+
 
 
 
