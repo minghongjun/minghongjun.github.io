@@ -156,6 +156,25 @@ robotium里面一个类里多个测试（@Smoke）一起运行时，第一个运
          }
      }
 
+## Unable to resolve activity for: Intent错误的解决方法
+
+今天我继续学习编写robotium的测试程序。目标是前些天在网上下来的android的一个扫雷源码（类名为test，包名为jim.test)。我的测试程序(类名为testTest,包名为jim.test.test)。
+
+按照昨天的学习成果我很快就建立好了一个android test application，首先在代码里用solo.searchText("000")找下扫雷程序里的一个TextView控件的文本，只是这么一个简 单的代码却在执行时遇到了麻烦。问题是这样的：在我Run这个测试程序失败后，我发现提示信息Failure Trace里显示“Unable to resolve activity for: Intent”
+
+这个错误我在上一个程序中就碰到过，只是没太在意。今天我特意上google上查了下这个错误信息（顺便BS下百度，搜这个居然什么都找不到），结果问题是出在了
+
+    public testTest（）｛
+     super（"com.example.android.notepad",test.class);
+    }
+
+这里面super的第一个参数我原本以为只是一个字符串，没什么实际用处，因此是直接复制的上一个程序的代码。现在才知道这个参数一定要跟本测试程序testTest的Mainfest.xml文件中的android:targetPackage 这个字段一致
+
+    android:targetPackage="jim.test" android:name="android.test.InstrumentationTestRunner" />
+
+事后想想其实很明显，第二个参数是被测试程序test.class，那第一个肯定是被测试程序的包名了。
+
+果然修改之后再Run，一切正常。
 
 
 
