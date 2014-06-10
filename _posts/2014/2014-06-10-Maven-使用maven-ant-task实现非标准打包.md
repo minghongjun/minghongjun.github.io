@@ -53,25 +53,29 @@ maven很强大，但是总有些事情干起来不是得心应手，没有使用
 其中src/main/java下放java代码；src/main/resources下放一个*.properties文件，这个资源文件是打包到jar中，内容打包之后不需要改变的。src/main/config下放一个标准的log4j.xml，这个是有在安装运行前临时修改的需要的。src/main/bin下放置可执行文件。
 
 1.首先看pom.xml，标准内容，很简单，象征性的加入几个依赖
-       
-    <dependency>
-     <groupId>commons-codec</groupId>
-     <artifactId>commons-codec</artifactId>
-     <version>1.3</version>
-    </dependency>
-    <dependency>
-     <groupId>log4j</groupId>
-     <artifactId>log4j</artifactId>
-     <version>1.2.13</version>
-     <scope>compile</scope>
-    </dependency>
-    <dependency>
-     <groupId>org.testng</groupId>
-     <artifactId>testng</artifactId>
-     <version>5.8</version>
-     <scope>test</scope>
-     <classifier>jdk15</classifier>
-    </dependency>
+
+{% highlight xml %} 
+
+<dependency>
+ <groupId>commons-codec</groupId>
+ <artifactId>commons-codec</artifactId>
+ <version>1.3</version>
+</dependency>
+<dependency>
+ <groupId>log4j</groupId>
+ <artifactId>log4j</artifactId>
+ <version>1.2.13</version>
+ <scope>compile</scope>
+</dependency>
+<dependency>
+ <groupId>org.testng</groupId>
+ <artifactId>testng</artifactId>
+ <version>5.8</version>
+ <scope>test</scope>
+ <classifier>jdk15</classifier>
+</dependency>
+
+{% endhighlight %}
 
 其中commons-codec，log4j是需要打包到lib中的，运行时需要。testng（或者更一般的junit）是用来单元测试的，不需要打包到lib中。请注意它的设置"<scope>test</scope>"。
 
