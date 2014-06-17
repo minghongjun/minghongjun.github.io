@@ -86,15 +86,15 @@ Username 和password字段就是自己要设置的数据库的账号和密码。
 
 如果提示 mysql 错误，再执行如下语句 gem install mysql 
 
-<span style="color:red;font-weight:bold">
-  (1. 如果提示有其它没有安装成功的语句，而且bundle install 安装报rmagick错误的话，在Windows下安装这个一直安装不成功，所以可以用bundle install --without development test rmagick 
+    1. 如果提示有其它没有安装成功的语句，而且bundle install 安装报rmagick错误的话，在Windows下安装这个一直安装不成功，所以可以用bundle install --without development test rmagick 
 
-  2. 如果电脑已经有mysql了，安装adapter:mysql2 要跟mysql关联：gem install mysql2 -- --with-mysql-dir=F:/shanlin/xampp/mysql
+    2. 如果电脑已经有mysql了，安装adapter:mysql2 要跟mysql关联：gem install mysql2 -- --with-mysql-dir=F:/shanlin/xampp/mysql
 
-  3. 替换libmysql.dll文件，由于RailsInstaller中的mysql编译版本问题，我们需要下载<http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-noinstall-6.0.2-win32.zip/from/pick>，将解压后的 lib\libmysql.dll 文件拷贝到 C:\RailsInstaller\Ruby1.9.3\bin下；
-  
-  4. rake generate_session_store 如果提示这句语句过时，用其它语句代替的话就用其它语句代替)
-</span>
+    3. 替换libmysql.dll文件，由于RailsInstaller中的mysql编译版本问题，我们需要下载<http://dev.mysql.com/get/Downloads/Connector-C/mysql-connector-c-noinstall-6.0.2-win32.zip/from/pick>，将解压后的 lib\libmysql.dll 文件拷贝到 C:\RailsInstaller\Ruby1.9.3\bin下；
+
+    3.3. 3中的办法经常会报 Incorrect MySQL client library version! This gem was compiled for 5.6.16 but the client library is 6.0.0等类似的错误，解决办法：把已经安装好的mysql/lib下的libmysql.dll,libmysql.lib文件拷贝到C:\RailsInstaller\Ruby1.9.3\bin下；
+    
+    4. rake generate_session_store 如果提示这句语句过时，用其它语句代替的话就用其它语句代替
 
 11.然后set RAILS_ENV=production
 
