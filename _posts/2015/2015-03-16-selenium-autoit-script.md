@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 关于Java（selenium）调用autoit脚本的问题  
-categories: selenium
+categories: autoit
 tags: 
 - selenium
 - autoit
