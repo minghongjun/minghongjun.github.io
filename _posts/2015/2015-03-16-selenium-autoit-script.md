@@ -1,13 +1,14 @@
 ---
 layout: post
-title: 关于java（selenium）调用autoit脚本的问题  
+title: 关于Java（selenium）调用autoit脚本的问题  
 categories: selenium
 tags: 
 - selenium
 - autoit
 ---
 
-先来段autoit代码：
+先来段autoit代码:
+
 {% highlight java %}
 
     Sleep($CmdLine[1]) 
@@ -15,7 +16,7 @@ tags:
 {% endhighlight %}
 
 编译成exe文件，文件名为sleep.exe，放在c盘根目录下，代码的功能很简单，就是根据传入的时间休眠。cmd下执行：c:\sleep.exe 2000，表示休眠2秒。 
-我们在Java中调用这个程序：
+我们在Java中调用这个程序:
 
 {% highlight java %}
 
@@ -168,3 +169,5 @@ public class Runau3 {
 }
 
 {% endhighlight %}
+
+end
