@@ -1,25 +1,25 @@
 ---
 layout: post
 title: Selenium借助AutoIt识别(上传/下载)详解
-categories: autoit
+categories: autoIt
 tags: 
 - selenium
-- autoit
+- autoIt
 ---
 
 AutoIt目前最新是v3版本，这是一个使用类似BASIC脚本语言的免费软件,它设计用于Windows GUI(图形用户界面)中进行自动化操作。它利用模拟键盘按键，鼠标移动和窗口/控件的组合来实现自动化任务。
 
-官方网站：https://www.autoitscript.com/site/
+官方网站：<https://www.autoitscript.com/site/>
 从网站上下载AutoIt并安装，安装完成在菜单中会看到图4.13的目录：
 
 <img src="/media/img/autoit/autoit-1.png">
 
-图1  AutoIt菜单
+图 1  AutoIt菜单
 
-    AutoIt Windows Info   用于帮助我们识Windows控件信息。
-    Compile Script to.exe 用于将AutoIt生成 exe 执行文件。
-    Run Script            用于执行AutoIt脚本。
-    SciTE Script Editor   用于编写AutoIt脚本。
+AutoIt Windows Info   用于帮助我们识Windows控件信息。  
+Compile Script to.exe 用于将AutoIt生成 exe 执行文件。  
+Run Script            用于执行AutoIt脚本。  
+SciTE Script Editor   用于编写AutoIt脚本。  
 
 {% highlight html %}
 
@@ -47,7 +47,7 @@ AutoIt目前最新是v3版本，这是一个使用类似BASIC脚本语言的免�
 
 <img src="/media/img/autoit/autoit-2.jpg">
 
-图2
+图 2
 
 下面以操作upload.html上传弹出的窗口为例讲解AutoIt实现上传过程。
 
@@ -55,11 +55,11 @@ AutoIt目前最新是v3版本，这是一个使用类似BASIC脚本语言的免�
 
 <img src="/media/img/autoit/autoit-3.png">
 
-图3 AutoIt Windows Info识别“文件名”输入框控件
+图 3 AutoIt Windows Info识别“文件名”输入框控件
 
 <img src="/media/img/autoit/autoit-4.png">
 
-图4 AutoIt Windows Info识别“打开”按钮控件
+图 4 AutoIt Windows Info识别“打开”按钮控件
 
 如图3、4，通过AutoIt Windows Info 获得以下信息。
 
@@ -89,13 +89,12 @@ ControlFocus()方法用于识别Window窗口。WinWait()设置10秒钟用于等�
 
 AutoIt的脚本已经写好了，可以通过菜单栏“Tools”-->“Go” （或按键盘F5）来运行一个脚本吧！注意在运行时上传窗口当前处于打开状态。
 
- 
 
 3、脚本运行正常，将其保存为upfile.au3，这里保存的脚本可以通过Run Script 工具将其打开运行，但我们的目的是希望这个脚本被Python程序调用，那么就需要将其生成exe程序。打开Compile Script to.exe工具，将其生成为exe可执行文件。如图5
 
 <img src="/media/img/autoit/autoit-5.png">
 
-图5 Compile Script to.exe生成exe程序
+图 5 Compile Script to.exe生成exe程序
 
 点击“Browse”选择upfile.au3文件，点击“Convert”按钮将其生成为upfile.exe程序。
 

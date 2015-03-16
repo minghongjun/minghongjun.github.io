@@ -1,10 +1,10 @@
 ---
 layout: post
-title: 关于Java（selenium）调用autoit脚本的问题  
-categories: autoit
+title: 关于Java（selenium）调用autoIt脚本的问题  
+categories: autoIt
 tags: 
 - selenium
-- autoit
+- autoIt
 ---
 
 先来段autoit代码:
